@@ -37,61 +37,72 @@ const RegisterForm = () => {
     <div className="RegisterForm">
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+        <div className='card p-5'>
+          <label className='form-label'>Name:</label>
           <input
             type="text"
+            className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Date Of Birth:</label>
+          <label className='form-label'>Date Of Birth:</label>
           <input
             type="date"
+            className="form-control"
+
             value={dob}
             onChange={(e) => setdob(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Time Of Birth:</label>
+          <label className='form-label'>Time Of Birth:</label>
           <input
             type="time"
+            className="form-control"
+
             value={tob}
             onChange={(e) => settob(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Gender:</label>
+          <label className='form-label'>Gender:</label>
           <input
             type="text"
+            className="form-control"
+
             value={Gender}
             onChange={(e) => setGender(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className='form-label'>
           <label>State:</label>
           <input
             type="text"
+            className="form-control"
+
             value={State}
             onChange={(e) => setState(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className='form-label'>
           <label>City:</label>
           <input
             type="text"
+            className="form-control"
+
             value={City}
             onChange={(e) => setCity(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className='btn btn-outline-primary'>Register</button>
       </form>
       {message && <p>{message}</p>}
     </div>
