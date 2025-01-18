@@ -34,9 +34,14 @@ client.connect()
 
 // Create table for users
 const createTable = `
-  CREATE TABLE IF NOT EXISTS users (
+  CREATE TABLE IF NOT EXISTS user (
     user_id UUID PRIMARY KEY,
     name TEXT,
+    dob DATE,
+    time TIME,
+    gender TEXT,
+    state TEXT,
+    city TEXT,
     email TEXT,
     password TEXT
   );
@@ -48,16 +53,19 @@ client.execute(createTable)
 
 // Registration endpoint
 app.post('/register', (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, dob, time, gender, state, city, email, password } = req.body;
 
   // Validate input
-  if (!name || !email || !password) {
+  if (!name || !dob || !time || !gender || !state || !city || !email || !password) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const query = 'INSERT INTO users (user_id, name, email, password) VALUES (uuid(), ?, ?, ?)';
+  const query = `
+    INSERT INTO user (user_id, name, dob, time, gender, state, city, email, password)
+    VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
 
-  client.execute(query, [name, email, password], { prepare: true })
+  client.execute(query, [name, dob, time, gender, state, city, email, password], { prepare: true })
     .then(() => {
       res.status(201).json({ message: 'User registered successfully!' });
     })

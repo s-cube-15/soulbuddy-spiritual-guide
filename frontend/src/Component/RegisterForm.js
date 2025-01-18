@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const [tob, settob] = useState(user.tob);
   const [Gender, setGender] = useState(user.Gender);
   const [State, setState] = useState(user.State);
-  const [City, setCity] = useState(user.City);
+  const [city, setCity] = useState(user.city);
 
   const [message , setMessage] = useState("")
 
@@ -86,7 +86,7 @@ const RegisterForm = () => {
           <label>City:</label>
           <input
             type="text"
-            value={City}
+            value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
