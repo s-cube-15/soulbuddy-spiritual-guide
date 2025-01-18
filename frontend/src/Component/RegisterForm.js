@@ -34,10 +34,10 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="RegisterForm">
+    <div className="RegisterForm card p-5">
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
-        <div className='card p-5'>
+        <div>
           <label className='form-label'>Name:</label>
           <input
             type="text"
