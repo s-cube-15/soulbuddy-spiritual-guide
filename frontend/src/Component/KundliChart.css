@@ -1,0 +1,39 @@
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    border: 2px solid #8a4d76;
+    border-radius: 15px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f7ede2, #fff1e6);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .cell {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #4a4a4a;
+    border: 1px solid #d9b3c4;
+    background: linear-gradient(135deg, #f7f3f2, #ffffff);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .cell:hover {
+    background: #fae1dd;
+    color: #6b2d5c;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  

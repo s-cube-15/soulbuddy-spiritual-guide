@@ -27,9 +27,12 @@ const RegisterForm = () => {
       
       const response = await axios.post('http://localhost:5000', user);
       setMessage(response.data.message);  // Show success message
+      document.location.hash = "/showchart"
     } catch (error) {
       setMessage('Error registering user!');
       console.error(error);
+      document.location.hash = "/showchart"
+
     }
   };
 
