@@ -1,1 +1,1 @@
-# soulbuddy-spiritual-guide
+# SoulBuddy - AI-Powered Spiritual Guide
