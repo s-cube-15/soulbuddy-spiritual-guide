@@ -31,7 +31,6 @@ const RegisterForm = () => {
     } catch (error) {
       setMessage('Error registering user!');
       console.error(error);
-      document.location.hash = "/showchart"
 
     }
   };
