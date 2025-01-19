@@ -1,32 +1,31 @@
-import React, { use, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { User } from './Usecontext';
-import { useContext } from 'react';
 
 const RegisterForm = () => {
+  const { user, setUser } = useContext(User);
 
-  const {user, setUser} = useContext(User)
+  const [name, setName] = useState(user?.name || '');
+  const [dob, setDob] = useState(user?.dob || '');
+  const [time, setTime] = useState(user?.time || '');
+  const [gender, setGender] = useState(user?.gender || '');
+  const [state, setState] = useState(user?.state || '');
+  const [city, setCity] = useState(user?.city || '');
+  const [email, setEmail] = useState(user?.email || '');
+  const [password, setPassword] = useState(''); // Password should not be stored in context for security reasons
 
-  const [name, setName] = useState(user.Name);
-  const [dob, setdob] = useState(user.dob);
-  const [tob, settob] = useState(user.tob);
-  const [Gender, setGender] = useState(user.Gender);
-  const [State, setState] = useState(user.State);
-  const [city, setCity] = useState(user.city);
-
-  const [message , setMessage] = useState("")
-
-  
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const userData = { name, email, password };
+    const userData = { name, dob, time, gender, state, city};
 
     try {
-      
-      const response = await axios.post('http://localhost:5000', user);
-      setMessage(response.data.message);  // Show success message
+      console.log(userData)
+      const response = await axios.post('http://localhost:5000/register', userData);
+      setMessage(response.data.message); // Show success message
+      setUser(userData); // Update context with the user data
     } catch (error) {
       setMessage('Error registering user!');
       console.error(error);
@@ -38,7 +37,7 @@ const RegisterForm = () => {
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label className='form-label'>Name:</label>
+          <label className="form-label">Name:</label>
           <input
             type="text"
             className="form-control"
@@ -48,61 +47,57 @@ const RegisterForm = () => {
           />
         </div>
         <div>
-          <label className='form-label'>Date Of Birth:</label>
+          <label className="form-label">Date of Birth:</label>
           <input
             type="date"
             className="form-control"
-
             value={dob}
-            onChange={(e) => setdob(e.target.value)}
+            onChange={(e) => setDob(e.target.value)}
             required
           />
         </div>
         <div>
-          <label className='form-label'>Time Of Birth:</label>
+          <label className="form-label">Time of Birth:</label>
           <input
             type="time"
             className="form-control"
-
-            value={tob}
-            onChange={(e) => settob(e.target.value)}
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
             required
           />
         </div>
         <div>
-          <label className='form-label'>Gender:</label>
+          <label className="form-label">Gender:</label>
           <input
             type="text"
             className="form-control"
-
-            value={Gender}
+            value={gender}
             onChange={(e) => setGender(e.target.value)}
             required
           />
         </div>
-        <div className='form-label'>
-          <label>State:</label>
+        <div>
+          <label className="form-label">State:</label>
           <input
             type="text"
             className="form-control"
-
-            value={State}
+            value={state}
             onChange={(e) => setState(e.target.value)}
             required
           />
         </div>
-        <div className='form-label'>
-          <label>City:</label>
+        <div>
+          <label className="form-label">City:</label>
           <input
             type="text"
             className="form-control"
-
-            value={City}
+            value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className='btn btn-outline-primary'>Register</button>
+       
+        <button type="submit" className="btn btn-outline-primary">Register</button>
       </form>
       {message && <p>{message}</p>}
     </div>

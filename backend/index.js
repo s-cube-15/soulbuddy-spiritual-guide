@@ -34,16 +34,13 @@ client.connect()
 
 // Create table for users
 const createTable = `
-  CREATE TABLE IF NOT EXISTS user (
-    user_id UUID PRIMARY KEY,
-    name TEXT,
+  CREATE TABLE IF NOT EXISTS customer (
+    user_id UUID PRIMARY KEY (name, user_id ) ,
     dob DATE,
     time TIME,
     gender TEXT,
     state TEXT,
-    city TEXT,
-    email TEXT,
-    password TEXT
+    city TEXT
   );
 `;
 
@@ -53,19 +50,20 @@ client.execute(createTable)
 
 // Registration endpoint
 app.post('/register', (req, res) => {
-  const { name, dob, time, gender, state, city, email, password } = req.body;
+  const { name, dob, time, gender, state, city  } = req.body;
+  console.log(name)
 
   // Validate input
-  if (!name || !dob || !time || !gender || !state || !city || !email || !password) {
+  if (!name || !dob || !time || !gender || !state || !city ) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
   const query = `
-    INSERT INTO user (user_id, name, dob, time, gender, state, city, email, password)
-    VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO  customer(user_id, name, dob, time, gender, state, city )
+    VALUES (uuid(), ?, ?, ?, ?, ?, ?)
   `;
 
-  client.execute(query, [name, dob, time, gender, state, city, email, password], { prepare: true })
+  client.execute(query, [name, dob, time, gender, state, city], { prepare: true })
     .then(() => {
       res.status(201).json({ message: 'User registered successfully!' });
     })
@@ -79,3 +77,5 @@ app.post('/register', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+

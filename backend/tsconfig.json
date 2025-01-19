@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "ES6",               // or "ES2015" for ES6 features
+      "module": "commonjs",          // or "ESNext" if you're using ES modules
+      "lib": ["es6", "dom"],         // Include ES6 and other libraries you need
+      "strict": true,                // Enable strict type-checking options
+      "esModuleInterop": true,       // Allows default import syntax for commonjs modules
+      "skipLibCheck": true           // Skips type checking for declaration files (optional)
+    }
+  }
+  
